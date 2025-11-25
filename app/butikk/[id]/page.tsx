@@ -7,6 +7,19 @@ export const metadata = {
   description: "Se detaljer om dette unike kunstverket fra Fra Skare.",
 }
 
+export async function generateStaticParams() {
+  // Generate static pages for common product IDs
+  // You can expand this list or fetch from an API
+  return [
+    { id: '1' },
+    { id: '2' },
+    { id: '3' },
+    { id: '4' },
+    { id: '5' },
+    { id: '6' },
+  ]
+}
+
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
 

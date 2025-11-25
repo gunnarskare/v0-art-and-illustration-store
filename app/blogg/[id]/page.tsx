@@ -82,6 +82,13 @@ const defaultPost = {
   image: "/artistic-watercolor-illustration-of-cozy-scandinav.jpg",
 }
 
+export async function generateStaticParams() {
+  // Generate static pages for all blog posts
+  return Object.keys(blogPosts).map((id) => ({
+    id,
+  }))
+}
+
 export default async function BloggInnleggPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const post = blogPosts[id] || defaultPost
