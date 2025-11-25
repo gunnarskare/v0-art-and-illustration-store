@@ -1,0 +1,10 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/blogg/[id]/page": "/blogg/[id]",
+  "/blogg/page": "/blogg",
+  "/butikk/[id]/page": "/butikk/[id]",
+  "/butikk/page": "/butikk",
+  "/om-oss/page": "/om-oss",
+  "/page": "/"
+}
