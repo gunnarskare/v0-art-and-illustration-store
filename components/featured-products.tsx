@@ -1,39 +1,16 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import { getProducts, formatPrice } from "@/lib/products"
 
-const featuredProducts = [
-  {
-    id: 1,
-    title: "Nordisk Skog",
-    artist: "Gunnar Skare",
-    price: 890,
-    image: "/minimalist-forest-illustration-nordic-style.jpg",
-  },
-  {
-    id: 2,
-    title: "Vårblomster",
-    artist: "Elisabeth Skare",
-    price: 750,
-    image: "/delicate-spring-flowers-watercolor-illustration.jpg",
-  },
-  {
-    id: 3,
-    title: "Kystlandskap",
-    artist: "Gunnar Skare",
-    price: 1200,
-    image: "/norwegian-coastal-landscape-ink-drawing.jpg",
-  },
-  {
-    id: 4,
-    title: "Botanisk Serie",
-    artist: "Elisabeth Skare",
-    price: 650,
-    image: "/botanical-plant-illustration-set-minimalist.jpg",
-  },
-]
+export async function FeaturedProducts() {
+  const allProducts = await getProducts()
+  const featuredProducts = allProducts.slice(0, 4)
 
-export function FeaturedProducts() {
+  if (featuredProducts.length === 0) {
+    return null
+  }
+
   return (
     <section className="py-24 bg-card">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,20 +30,25 @@ export function FeaturedProducts() {
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {featuredProducts.map((product) => (
-            <Link key={product.id} href={`/butikk/${product.id}`} className="group">
-              <div className="aspect-[4/5] rounded-lg overflow-hidden bg-muted mb-4">
-                <img
-                  src={product.image || "/placeholder.svg"}
-                  alt={product.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              <h3 className="font-medium text-lg mb-1 group-hover:text-primary transition-colors">{product.title}</h3>
-              <p className="text-sm text-muted-foreground mb-2">{product.artist}</p>
-              <p className="font-medium">{product.price} kr</p>
-            </Link>
-          ))}
+          {featuredProducts.map((product) => {
+            const lowestPrice = product.product_sizes?.length
+              ? Math.min(...product.product_sizes.map((s) => s.price_in_ore))
+              : 0
+            return (
+              <Link key={product.id} href={`/butikk/${product.id}`} className="group">
+                <div className="aspect-[4/5] rounded-lg overflow-hidden bg-muted mb-4">
+                  <img
+                    src={product.image_url || "/placeholder.svg"}
+                    alt={product.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <h3 className="font-medium text-lg mb-1 group-hover:text-primary transition-colors">{product.name}</h3>
+                <p className="text-sm text-muted-foreground mb-2">{product.artist}</p>
+                <p className="font-medium">fra {formatPrice(lowestPrice)}</p>
+              </Link>
+            )
+          })}
         </div>
       </div>
     </section>

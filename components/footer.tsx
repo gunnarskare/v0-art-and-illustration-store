@@ -10,8 +10,7 @@ export function Footer() {
           <div className="md:col-span-2">
             <h3 className="text-3xl font-semibold mb-4">Fra Skare</h3>
             <p className="text-muted-foreground leading-relaxed max-w-md">
-              Håndlagde illustrasjoner og kunst laget med kjærlighet av Gunnar og Elisabeth Skare. Hver tegning
-              forteller en historie.
+              Håndlagde illustrasjoner og kunst laget med kjærlighet av Gunnar og Elisabeth Skare. Hver tegning er en historie.
             </p>
           </div>
 

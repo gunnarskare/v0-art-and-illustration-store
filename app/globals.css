@@ -1,9 +1,9 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
-/* <CHANGE> New warm, earthy color palette for art store */
+/* removed tw-animate-css import that was causing parsing error */
+
 :root {
   --background: oklch(0.97 0.01 80);
   --foreground: oklch(0.25 0.02 60);

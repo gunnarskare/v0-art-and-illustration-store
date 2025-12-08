@@ -30,9 +30,9 @@ export default function OmOssPage() {
             </div>
             <div className="aspect-[4/3] rounded-lg overflow-hidden bg-muted">
               <img
-                src="/placeholder.svg?key=0yh0m"
-                alt="Gunnar og Elisabeth Skare i atelieret"
-                className="w-full h-full object-cover"
+                src="/images/img-2207.jpeg"
+                alt="Gunnar og Elisabeth Skare med en av illustrasjonene sine"
+                className="w-full object-cover h-[140%]"
               />
             </div>
           </div>
@@ -47,30 +47,22 @@ export default function OmOssPage() {
               <div className="space-y-6 text-muted-foreground leading-relaxed">
                 <p>
                   Gunnar har tegnet så lenge han kan huske. Som liten gutt fylte han skisseblokk etter skisseblokk med
-                  landskap, trær og dyr han så rundt seg. Blyanten ble hans måte å forstå verden på, og kunsten fulgte
-                  ham gjennom ungdomstid og voksenliv.
+                  landskap, blomster og dyr han så rundt seg. Blyanten ble hans måte å forstå verden på, og kunsten
+                  fulgte ham gjennom ungdomstid og voksenliv.
                 </p>
 
                 <p>
                   Elisabeth derimot hadde knapt holdt en pensel før de møttes. Men da Gunnar en kveld satt og tegnet ved
                   kjøkkenbordet, ble hun nysgjerrig. «Kan jeg prøve?» spurte hun forsiktig. Den kvelden ble starten på
-                  noe nytt.
+                  en kreativ reise sammen med Gunnar. Høsten 2020, bestemte hun seg for å prøve akvarell maling, og kom
+                  på ideen om å lage julekort til familie og venner. Dette ble Gunnar så klart med på. Det ble fort en
+                  større prosess da folk vi viste det til ønsket å kjøpe kort av oss. Plutselig ble det mange kvelder
+                  med kakao, tente lys, og flere timer med tegning og maling på de begge, mens Gunnar fant ny
+                  inspirasjon i å se kunsten gjennom hennes øyne.
                 </p>
 
                 <p>
-                  Det som begynte som en avslappende aktivitet sammen, utviklet seg raskt til en felles lidenskap.
-                  Elisabeth oppdaget en naturlig sans for farger og blomstermotiver, mens Gunnar fant ny inspirasjon i å
-                  se kunsten gjennom hennes øyne.
-                </p>
-
-                <p>
-                  Venner og familie la merke til bildene som begynte å pryde veggene hjemme. «Kan vi ikke kjøpe den?»
-                  ble et stadig vanligere spørsmål. Etter mye overtalelse bestemte de seg for å dele kunsten sin med
-                  flere.
-                </p>
-
-                <p className="text-foreground font-medium">
-                  I dag er Fra Skare et prosjekt drevet av kjærlighet – både til hverandre og til kunsten vi skaper
+                  I dag er Fra Skare et prosjekt drevet av lidenskap – både til hverandre og til kunsten vi skaper
                   sammen.
                 </p>
               </div>
@@ -86,34 +78,28 @@ export default function OmOssPage() {
             {/* Gunnar */}
             <div>
               <div className="aspect-[3/4] rounded-lg overflow-hidden bg-muted mb-6">
-                <img
-                  src="/male-artist-drawing-at-desk-nordic-style-warm-ligh.jpg"
-                  alt="Gunnar Skare"
-                  className="w-full h-full object-cover"
-                />
+                <img src="/images/191530.jpeg" alt="Gunnar Skare" className="w-full h-full object-cover" />
               </div>
               <h3 className="text-2xl font-medium mb-4">Gunnar Skare</h3>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
-                  Gunnar har tegnet siden han var liten gutt i Telemark. Oppvekst omgitt av norsk natur har preget
-                  stilen hans – rolige landskap, myke linjer og en dyp respekt for naturen rundt oss.
+                  Gunnar er oppvokst i Hedmark, og har tegnet siden han var liten gutt. I oppveksten var han omgitt av
+                  norsk natur som har preget stilen hans – rolige landskap, eldre bygninger og opplevelser med venner og
+                  familie.
                 </p>
                 <p>
-                  Han jobber hovedsakelig med tusj og blyant, og henter inspirasjon fra turer i skog og mark. Hver
-                  tegning starter som en skisse i den velbrukte notatblokken han alltid har med seg.
+                  Han jobber hovedsakelig med pen og blyant, og henter inspirasjon fra relasjoner og omgivelsene rundt
+                  seg. Hver tegning starter som en skisse i en av hans velbrukte notatblokker. Deretter går han over med
+                  pennen før han gir den videre til Elisabeth som bringer farger til motivet.
                 </p>
               </div>
-              <p className="mt-4 text-sm text-primary italic">«For meg handler kunst om å fange øyeblikk av ro.»</p>
+              <p className="mt-4 text-sm text-primary italic"></p>
             </div>
 
             {/* Elisabeth */}
             <div>
               <div className="aspect-[3/4] rounded-lg overflow-hidden bg-muted mb-6">
-                <img
-                  src="/female-artist-painting-watercolors-at-table-cozy-s.jpg"
-                  alt="Elisabeth Skare"
-                  className="w-full h-full object-cover"
-                />
+                <img src="/images/img-5261.jpg" alt="Elisabeth Skare" className="w-full h-full object-cover" />
               </div>
               <h3 className="text-2xl font-medium mb-4">Elisabeth Skare</h3>
               <div className="space-y-4 text-muted-foreground leading-relaxed">
@@ -126,7 +112,7 @@ export default function OmOssPage() {
                   detaljer preger arbeidene hennes – alltid med en myk og drømmende kvalitet.
                 </p>
               </div>
-              <p className="mt-4 text-sm text-primary italic">«Jeg fant en stemme jeg ikke visste jeg hadde.»</p>
+              <p className="mt-4 text-sm text-primary italic"></p>
             </div>
           </div>
         </section>
@@ -143,8 +129,8 @@ export default function OmOssPage() {
                 </div>
                 <h3 className="text-xl font-medium mb-2">Laget med kjærlighet</h3>
                 <p className="text-muted-foreground">
-                  Hvert eneste motiv er laget for hånd, med tid og omtanke. Vi jager ikke trender – vi skaper det som
-                  føles ekte.
+                  Laget med lidenskap – det eneste motivet er laget for hånd, med tid og omtanke. Vi jager ikke trender
+                  – vi skaper motiver som vi selv finner glede i.
                 </p>
               </div>
 

@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react"
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center pt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-[]">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
           <div className="order-2 lg:order-1">
@@ -35,18 +35,12 @@ export function HeroSection() {
             <div className="relative">
               <div className="aspect-[4/5] rounded-lg overflow-hidden bg-muted">
                 <img
-                  src="/artistic-watercolor-illustration-of-cozy-scandinav.jpg"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_0998%202-dOk8U3qynHkp3frnzI2NxhL3OufE9Z.jpg"
                   alt="Kunstillustrasjon fra Fra Skare"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 rounded-lg overflow-hidden border-4 border-background shadow-lg hidden md:block">
-                <img
-                  src="/small-botanical-line-drawing-illustration.jpg"
-                  alt="Botanisk illustrasjon"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+              
             </div>
           </div>
         </div>

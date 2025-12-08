@@ -12,35 +12,35 @@ export function ArtistsPreview() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
-          {/* Gunnar */}
+          {/* Gunnar - Updated image and description */}
           <div className="group">
             <div className="aspect-[3/4] rounded-lg overflow-hidden bg-muted mb-6">
               <img
-                src="/male-artist-drawing-at-desk-nordic-style-warm-ligh.jpg"
+                src="/images/191530.jpeg"
                 alt="Gunnar Skare"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
             <h3 className="text-2xl font-medium mb-2">Gunnar Skare</h3>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Har tegnet siden han var liten gutt. Med fokus på landskap og natur, bringer Gunnar nordisk ro inn i hver
-              strek.
+              Oppvokst i Hedmark og har tegnet siden han var liten gutt. Med fokus på landskap, eldre bygninger og norsk
+              natur, bringer Gunnar ro inn i hver strek med penn og blyant.
             </p>
           </div>
 
-          {/* Elisabeth */}
+          {/* Elisabeth - Updated image and description */}
           <div className="group">
             <div className="aspect-[3/4] rounded-lg overflow-hidden bg-muted mb-6">
               <img
-                src="/female-artist-painting-watercolors-at-table-cozy-s.jpg"
+                src="/images/img-5261.jpg"
                 alt="Elisabeth Skare"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
             <h3 className="text-2xl font-medium mb-2">Elisabeth Skare</h3>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Oppdaget gleden ved å male da hun møtte Gunnar. Hennes botaniske motiver og blomstermotiver har blitt en
-              favoritt blant kundene.
+              Oppdaget gleden ved å male da hun møtte Gunnar. Hennes akvareller med botaniske motiver og blomster har en
+              myk, drømmende kvalitet som har blitt en favoritt blant kundene.
             </p>
           </div>
         </div>
