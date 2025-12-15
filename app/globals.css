@@ -1,8 +1,7 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
-
-/* removed tw-animate-css import that was causing parsing error */
 
 :root {
   --background: oklch(0.97 0.01 80);

@@ -10,7 +10,8 @@ export function Footer() {
           <div className="md:col-span-2">
             <h3 className="text-3xl font-semibold mb-4">Fra Skare</h3>
             <p className="text-muted-foreground leading-relaxed max-w-md">
-              Håndlagde illustrasjoner og kunst laget med kjærlighet av Gunnar og Elisabeth Skare. Hver tegning er en historie.
+              Håndlagde illustrasjoner og kunst laget med kjærlighet av Gunnar og Elisabeth Skare. Hver tegning er en
+              historie.
             </p>
           </div>
 
@@ -35,11 +36,11 @@ export function Footer() {
             <h4 className="text-sm uppercase tracking-widest mb-4 text-foreground">Kontakt</h4>
             <div className="flex flex-col gap-3">
               <a
-                href="mailto:hei@fraskare.no"
+                href="mailto:skare@paralabs.no"
                 className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
               >
                 <Mail className="h-4 w-4" />
-                hei@fraskare.no
+                skare@paralabs.no
               </a>
               <a
                 href="https://instagram.com/fraskare"

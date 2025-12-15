@@ -168,11 +168,11 @@ export default function OmOssPage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <a
-                href="mailto:hei@fraskare.no"
+                href="mailto:skare@paralabs.no"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-border rounded-md hover:bg-secondary transition-colors"
               >
                 <Mail className="h-4 w-4" />
-                hei@fraskare.no
+                skare@paralabs.no
               </a>
               <a
                 href="https://instagram.com/fraskare"
