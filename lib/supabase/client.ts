@@ -17,3 +17,5 @@ export function createClient() {
 
   return supabaseClient
 }
+
+export const createBrowserClient = createClient
