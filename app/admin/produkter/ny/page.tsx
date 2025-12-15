@@ -73,9 +73,14 @@ export default function NyttProduktPage() {
     const supabase = createClient()
 
     try {
+      console.log("[v0] Form data:", form)
+      console.log("[v0] Sizes:", sizes)
+
       const baseSlug = generateSlug(form.name)
       let slug = baseSlug
       let counter = 1
+
+      console.log("[v0] Generated base slug:", baseSlug)
 
       // Sjekk om slug allerede eksisterer, legg til nummer hvis nødvendig
       while (true) {
@@ -86,6 +91,8 @@ export default function NyttProduktPage() {
         counter++
       }
 
+      console.log("[v0] Final slug:", slug)
+
       // Opprett produkt
       const { data: product, error: productError } = await supabase
         .from("products")
@@ -95,10 +102,12 @@ export default function NyttProduktPage() {
           artist: form.artist,
           category: form.category,
           image_url: form.image_url,
-          slug: slug, // Legg til slug
+          slug: slug,
         })
         .select()
         .single()
+
+      console.log("[v0] Product created:", product, "error:", productError)
 
       if (productError) throw productError
 
@@ -111,14 +120,19 @@ export default function NyttProduktPage() {
           price_in_ore: s.price * 100,
         }))
 
+        console.log("[v0] Creating sizes:", sizesData)
+
         const { error: sizesError } = await supabase.from("product_sizes").insert(sizesData)
+
+        console.log("[v0] Sizes created, error:", sizesError)
 
         if (sizesError) throw sizesError
       }
 
-      router.push("/admin/produkter")
-      router.refresh()
+      console.log("[v0] Success! Redirecting...")
+      window.location.href = "/admin/produkter"
     } catch (err) {
+      console.error("[v0] Error:", err)
       setError(err instanceof Error ? err.message : "Kunne ikke lagre produkt")
     } finally {
       setIsLoading(false)
