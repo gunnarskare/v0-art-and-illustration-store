@@ -3,6 +3,7 @@
 import { stripe } from "@/lib/stripe"
 import { getProduct, oreToKroner } from "@/lib/products"
 import { createClient } from "@/lib/supabase/client"
+import { getShippingSettings } from "@/lib/settings"
 
 interface CartItemForCheckout {
   productId: string
@@ -38,19 +39,21 @@ export async function createCheckoutSession(items: CartItemForCheckout[]) {
     }),
   )
 
+  const shippingSettings = await getShippingSettings()
+
   // Beregn total for fraktlogikk
   const subtotal = lineItems.reduce((sum, item) => sum + item.price_data.unit_amount * item.quantity, 0)
   const subtotalKroner = oreToKroner(subtotal)
 
   let shippingCost = 0
-  if (subtotalKroner < 1000) {
-    shippingCost = 7900 // 79 kr
+  if (subtotalKroner < shippingSettings.free_shipping_threshold) {
+    shippingCost = shippingSettings.cost * 100
     lineItems.push({
       price_data: {
         currency: "nok",
         product_data: {
           name: "Standard frakt",
-          description: "3-5 virkedager",
+          description: shippingSettings.delivery_time,
         },
         unit_amount: shippingCost,
       },

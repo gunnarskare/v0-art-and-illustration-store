@@ -8,16 +8,24 @@ import { Button } from "@/components/ui/button"
 import { useCart } from "@/lib/cart-context"
 import { StripeCheckout } from "@/components/stripe-checkout"
 import { saveOrder } from "@/app/actions/stripe"
+import { getShippingSettings } from "@/lib/settings"
 import { ChevronLeft, Check, ShoppingBag } from "lucide-react"
 
 export default function KassePage() {
   const { items, totalPrice, clearCart } = useCart()
   const [isComplete, setIsComplete] = useState(false)
   const [isReady, setIsReady] = useState(false)
+  const [shippingCost, setShippingCost] = useState(79)
+  const [freeShippingThreshold, setFreeShippingThreshold] = useState(1000)
 
-  // Vent på at cart er lastet fra localStorage
   useEffect(() => {
-    setIsReady(true)
+    async function loadShippingSettings() {
+      const settings = await getShippingSettings()
+      setShippingCost(settings.cost)
+      setFreeShippingThreshold(settings.free_shipping_threshold)
+      setIsReady(true)
+    }
+    loadShippingSettings()
   }, [])
 
   useEffect(() => {
@@ -27,7 +35,6 @@ export default function KassePage() {
 
         if (sessionId) {
           try {
-            // Lagre ordre i database
             await saveOrder(sessionId)
           } catch (error) {
             console.error("Kunne ikke lagre ordre:", error)
@@ -42,7 +49,6 @@ export default function KassePage() {
     return () => window.removeEventListener("message", handleMessage)
   }, [clearCart])
 
-  // Vis loading mens cart lastes
   if (!isReady) {
     return (
       <>
@@ -57,7 +63,6 @@ export default function KassePage() {
     )
   }
 
-  // Tom handlekurv
   if (items.length === 0 && !isComplete) {
     return (
       <>
@@ -79,7 +84,6 @@ export default function KassePage() {
     )
   }
 
-  // Bekreftelsesside
   if (isComplete) {
     return (
       <>
@@ -106,8 +110,8 @@ export default function KassePage() {
     )
   }
 
-  const shippingCost = totalPrice >= 1000 ? 0 : 79
-  const finalTotal = totalPrice + shippingCost
+  const actualShippingCost = totalPrice >= freeShippingThreshold ? 0 : shippingCost
+  const finalTotal = totalPrice + actualShippingCost
 
   return (
     <>
@@ -125,12 +129,10 @@ export default function KassePage() {
           <h1 className="text-3xl md:text-4xl font-light mb-8">Kasse</h1>
 
           <div className="grid lg:grid-cols-3 gap-12">
-            {/* Stripe Checkout */}
             <div className="lg:col-span-2">
               <StripeCheckout />
             </div>
 
-            {/* Ordresammendrag */}
             <div className="lg:col-span-1">
               <div className="bg-muted/30 rounded-lg p-6 sticky top-24">
                 <h2 className="text-lg font-medium mb-4">Din bestilling</h2>
@@ -161,10 +163,12 @@ export default function KassePage() {
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Frakt</span>
-                    <span>{shippingCost === 0 ? "Gratis" : `${shippingCost} kr`}</span>
+                    <span>{actualShippingCost === 0 ? "Gratis" : `${actualShippingCost} kr`}</span>
                   </div>
-                  {totalPrice < 1000 && (
-                    <p className="text-xs text-muted-foreground">Gratis frakt ved kjøp over 1000 kr</p>
+                  {totalPrice < freeShippingThreshold && (
+                    <p className="text-xs text-muted-foreground">
+                      Gratis frakt ved kjøp over {freeShippingThreshold} kr
+                    </p>
                   )}
                   <div className="flex justify-between text-lg font-medium pt-2 border-t border-border">
                     <span>Totalt</span>

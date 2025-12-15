@@ -7,6 +7,15 @@ import { useRouter } from "next/navigation"
 import { useState, useRef } from "react"
 import Link from "next/link"
 
+function generateSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9æøå\s-]/g, "") // Fjern spesialtegn, behold æøå
+    .replace(/\s+/g, "-") // Erstatt mellomrom med bindestrek
+    .replace(/-+/g, "-") // Fjern duplikate bindestreker
+    .trim()
+}
+
 export default function NyttProduktPage() {
   const router = useRouter()
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -64,6 +73,19 @@ export default function NyttProduktPage() {
     const supabase = createClient()
 
     try {
+      const baseSlug = generateSlug(form.name)
+      let slug = baseSlug
+      let counter = 1
+
+      // Sjekk om slug allerede eksisterer, legg til nummer hvis nødvendig
+      while (true) {
+        const { data: existing } = await supabase.from("products").select("id").eq("slug", slug).single()
+
+        if (!existing) break
+        slug = `${baseSlug}-${counter}`
+        counter++
+      }
+
       // Opprett produkt
       const { data: product, error: productError } = await supabase
         .from("products")
@@ -73,6 +95,7 @@ export default function NyttProduktPage() {
           artist: form.artist,
           category: form.category,
           image_url: form.image_url,
+          slug: slug, // Legg til slug
         })
         .select()
         .single()

@@ -7,6 +7,15 @@ import { useRouter, useParams } from "next/navigation"
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 
+function generateSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9æøå\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .trim()
+}
+
 export default function RedigerProduktPage() {
   const router = useRouter()
   const params = useParams()
@@ -106,6 +115,31 @@ export default function RedigerProduktPage() {
     const supabase = createClient()
 
     try {
+      const { data: currentProduct } = await supabase.from("products").select("name, slug").eq("id", id).single()
+
+      let slug = currentProduct?.slug
+
+      // Hvis navnet er endret, generer ny slug
+      if (currentProduct && currentProduct.name !== form.name) {
+        const baseSlug = generateSlug(form.name)
+        slug = baseSlug
+        let counter = 1
+
+        // Sjekk om slug allerede eksisterer (ekskludert nåværende produkt)
+        while (true) {
+          const { data: existing } = await supabase
+            .from("products")
+            .select("id")
+            .eq("slug", slug)
+            .neq("id", id)
+            .single()
+
+          if (!existing) break
+          slug = `${baseSlug}-${counter}`
+          counter++
+        }
+      }
+
       const { error: productError } = await supabase
         .from("products")
         .update({
@@ -114,6 +148,7 @@ export default function RedigerProduktPage() {
           artist: form.artist,
           category: form.category,
           image_url: form.image_url,
+          slug: slug, // Oppdater slug
           updated_at: new Date().toISOString(),
         })
         .eq("id", id)

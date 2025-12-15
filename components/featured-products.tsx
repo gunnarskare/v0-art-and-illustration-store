@@ -35,7 +35,7 @@ export async function FeaturedProducts() {
               ? Math.min(...product.product_sizes.map((s) => s.price_in_ore))
               : 0
             return (
-              <Link key={product.id} href={`/butikk/${product.id}`} className="group">
+              <Link key={product.id} href={`/butikk/${product.slug}`} className="group">
                 <div className="aspect-[4/5] rounded-lg overflow-hidden bg-muted mb-4">
                   <img
                     src={product.image_url || "/placeholder.svg"}

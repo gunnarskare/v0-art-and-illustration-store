@@ -90,6 +90,15 @@ export default function AdminDashboard() {
             <p className="text-sm text-green-700 mt-2">Administrer blogg →</p>
           </Link>
 
+          <Link
+            href="/admin/innstillinger"
+            className="block p-6 bg-white rounded-lg shadow-sm border hover:shadow-md transition-shadow"
+          >
+            <h2 className="text-xl font-semibold mb-2">Innstillinger</h2>
+            <p className="text-stone-600">Frakt og butikkinnstillinger</p>
+            <p className="text-sm text-green-700 mt-2">Administrer innstillinger →</p>
+          </Link>
+
           <Link href="/" className="block p-6 bg-white rounded-lg shadow-sm border hover:shadow-md transition-shadow">
             <h2 className="text-xl font-semibold mb-2">Se butikken</h2>
             <p className="text-stone-600">Åpne forsiden</p>
