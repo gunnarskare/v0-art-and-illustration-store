@@ -214,14 +214,13 @@ export default function RedigerProduktPage() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium mb-1">Kunstner</label>
-                <select
+                <input
+                  type="text"
                   value={form.artist}
                   onChange={(e) => setForm({ ...form, artist: e.target.value })}
                   className="w-full px-3 py-2 border rounded-md"
-                >
-                  <option value="Gunnar Skare">Gunnar Skare</option>
-                  <option value="Elisabeth Skare">Elisabeth Skare</option>
-                </select>
+                  placeholder="Gunnar Skare"
+                />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1">Kategori</label>

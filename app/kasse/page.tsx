@@ -7,6 +7,7 @@ import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { useCart } from "@/lib/cart-context"
 import { StripeCheckout } from "@/components/stripe-checkout"
+import { saveOrder } from "@/app/actions/stripe"
 import { ChevronLeft, Check, ShoppingBag } from "lucide-react"
 
 export default function KassePage() {
@@ -19,10 +20,20 @@ export default function KassePage() {
     setIsReady(true)
   }, [])
 
-  // Lytt på Stripe checkout completion
   useEffect(() => {
-    const handleMessage = (event: MessageEvent) => {
+    const handleMessage = async (event: MessageEvent) => {
       if (event.data?.type === "checkout.session.completed") {
+        const sessionId = event.data?.sessionId
+
+        if (sessionId) {
+          try {
+            // Lagre ordre i database
+            await saveOrder(sessionId)
+          } catch (error) {
+            console.error("Kunne ikke lagre ordre:", error)
+          }
+        }
+
         setIsComplete(true)
         clearCart()
       }
